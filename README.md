@@ -430,10 +430,10 @@ Good | Bad
 
 #### Make changes to the file
 
-Now let's open file.txt in Sublime:
+Now let's open file.txt in Atom:
 
 ```bash
-$ subl file.txt
+$ atom file.txt
 ```
 
 Inside the file, write something.
