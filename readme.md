@@ -256,10 +256,10 @@ The first argument is the file or folder being moved or renamed, and the second 
 mkdir this-folder that-folder
 touch this-file.txt that-file.txt
 mv this-file.txt this-folder
-mv that-file.txt that-folder/that-fileeeeeee.txt
+mv that-file.txt that-folder/that-file.txt
 ```
 
-Notice now, `this-folder` has a `this-file.txt` within it and `that-folder` has a `that-fileeee.txt`.
+Notice now, `this-folder` has a `this-file.txt` within it and `that-folder` has a `that-file.txt`.
 
 A few other helpful commands you can try on your own:
 
