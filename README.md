@@ -520,7 +520,7 @@ Refresh your GitHub webpage, and the files should be there.
 
 Before you can open a pull request, you must create a branch in your local repository, commit to it, and push the branch to a repository or fork on GitHub.
 
-1. Visit the repository you pushed to
+1. Visit the repository you forked from
 2. Click the "Compare, review, create a pull request" button in the repository ![pr](https://cloud.githubusercontent.com/assets/40461/8229344/d344aa8e-15ad-11e5-8578-08893bcee335.jpg)
 
 3. You'll land right onto the compare page - you can click Edit at the top to pick a new branch to merge in, using the Head Branch dropdown.
