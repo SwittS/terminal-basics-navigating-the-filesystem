@@ -487,7 +487,7 @@ Get comfortable with your `~/.bash_profile`
 
 ## Closing Thoughts
 
-We will use the command line several hours every day, because is makes all files and folders manipulations more easy. A lot of softwares programs that we will use during the course also only have a CLI interface and can only be used with commands. Always remember that every action you'll do in a GUI can be done in the CLI.
+We will use the command line several hours every day, because is makes all files and folders manipulations more easy. A lot of software programs that we will use during the course also only have a CLI interface and can only be used with commands. Always remember that every action you'll do in a GUI can be done in the CLI.
 
 
 ## Meta Skills
