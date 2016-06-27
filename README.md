@@ -516,8 +516,19 @@ git push origin master
 
 Refresh your GitHub webpage, and the files should be there.
 
+## Create a pull request on GitHub - Codealong
 
+Before you can open a pull request, you must create a branch in your local repository, commit to it, and push the branch to a repository or fork on GitHub.
 
+1. Visit the repository you pushed to
+2. Click the "Compare, review, create a pull request" button in the repository ![pr](https://cloud.githubusercontent.com/assets/40461/8229344/d344aa8e-15ad-11e5-8578-08893bcee335.jpg)
+
+3. You'll land right onto the compare page - you can click Edit at the top to pick a new branch to merge in, using the Head Branch dropdown.
+4. Select the target branch your branch should be merged to, using the Base Branch dropdown
+5. Review your proposed change
+6. Click "Click to create a pull request" for this comparison
+7. Enter a title and description for your pull request
+8. Click 'Send pull request'
 
 ## Resources
 
