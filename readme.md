@@ -270,125 +270,6 @@ A few other helpful commands you can try on your own:
 | `history` | lists entire commands history                                         |
 | `df -h`   | displays free disk space                                              |
 
-
-## UNIX permissions and Chmod
-
-An OS is meant to serve many users, A user may correspond to a real-world person, but also a program that acts as a specific user. In my laptop OS, I am "Gerry" and with gerry goes a set of permissions and restrictions on all files and folders, But I can also act for some specific program as the user "www" which corresponds to the privileges necessary to operate the local web server. Every User on the OS has a User ID - the name "Gerry" or "www" is just an alias for a User ID.
-
-Users can be organized in groups. A user may be in one or several groups. A group will have the same set of permissions for every user assigned to this group.
-
-Every file has an owner user and an owner group. So, for any file in the system, user 'gerry' may have one of the following ownership relations:
-
-* gerry owns the file, i.e. the file's owner is 'gerry'.
-* gerry is a member of the group that owns the file, i.e. the file's owner group is 'wdi'.
-* gerry is neither the owner, nor belonging to the group that owns the file.
-
-Every file on the system has associated with it a set of permissions. Permissions tell UNIX what can be done with that file and by whom. There are three things you can do with a given file:
-
-* read it.
-* write it.
-* execute it.
-
-Permissions for a file will specify which of the three actions above can be performed for groups an users in an OS.
-
-For every file, there is 3 types of permissions: permissions for the owner, for the group owner and for everyone else. Remember that there are three possibles actions a user can take on a file - read (r), write (w), execute (x) - so for each of the three permissions we need three actions.
-
-
-If you change the present working directory to the root (`cd /`) and then show the folder content with the details by typing `ls -l` on the command prompt, you will get something like this:
-
-```bash
- 0 drwxrwxr-x+ 93 root  admin  3162 Aug 15 19:37 Applications
- 0 drwxr-xr-x+ 66 root  wheel  2244 Jan 18  2015 Library
- 0 drwxr-xr-x@  2 root  wheel    68 Sep  9  2014 Network
- 0 drwxr-xr-x+  4 root  wheel   136 Jan 18  2015 System
- 8 lrwxr-xr-x   1 root  wheel    49 Apr 14  2014 User Information -> /Library/Documentation/User Information.localized
- 0 drwxr-xr-x   6 root  admin   204 Jan 18  2015 Users
- 0 drwxrwxrwt@  5 root  admin   170 Aug 15 16:35 Volumes
- 0 drwxr-xr-x@ 39 root  wheel  1326 Apr 28 21:05 bin
- 0 drwxrwxr-t@  2 root  admin    68 Sep  9  2014 cores
- 0 drwxr-xr-x   3 root  wheel   102 Sep  8  2014 data
-10 dr-xr-xr-x   3 root  wheel  4805 Aug 14 11:45 dev
- 8 lrwxr-xr-x@  1 root  wheel    11 Jan 18  2015 etc -> private/etc
- 2 dr-xr-xr-x   2 root  wheel     1 Aug 15 19:42 home
- 2 dr-xr-xr-x   2 root  wheel     1 Aug 15 19:42 net
- 0 drwxr-xr-x@  6 root  wheel   204 Jan 18  2015 private
- 0 drwxr-xr-x@ 59 root  wheel  2006 Apr 28 21:05 sbin
- 8 lrwxr-xr-x@  1 root  wheel    11 Jan 18  2015 tmp -> private/tmp
- 0 drwxr-xr-x@ 12 root  wheel   408 Jan 18  2015 usr
- 8 lrwxr-xr-x@  1 root  wheel    11 Jan 18  2015 var -> private/var
-
-```
-
-The second column corresponds to the permissions details for each file/folder. For the first line:
-
-```bash
-drwxrwxr-x+
-```
-We're not going to talk about the `d` letter at the start or the `+` at the end of each line for the moment. Just pay attention to the nine letters between.
-
-The important part in this set of characters is:
-
-```bash
-rwxrwxr-x
-```
-
-This can be read:
-```bash
-rwx rwx r-x
-```
-This breaks down like this:
-
-- first group of three letters corresponds to the owner permission,
-- the second group of three letters corresponds to the owner group permission,
-- the last group of three letters corresponds to others permission,
-
-#### `chmod`
-
-To modify a file's permissions you need to use the `chmod` command.
-
-Only the owner of a file may use chmod to alter a file's permissions.
-
-chmod has the following syntax:
-
-```bash
-chmod [options] mode file(s)
-```
-
-The 'mode' part specifies the new permissions for the file(s) that follow as arguments. A mode specifies which user's permissions should be changed, and afterwards which access types should be changed. Let's say for example:
-
-```bash
-chmod a-x file.txt
-```
-
-This means that the execute bit should be cleared (-) for all users - owner, group and the rest of the world. The permissions start with a letter specifying what users should be affected by the change, and this might be any of the following:
-
-
-* u the owner user
-* g the owner group
-* o others (neither u, nor g)
-* a all users
-
-You might have encountered things like `chmod 755 a_file.txt`.
-
-You can change the entire permission pattern of a file in one go using one number like the one in this example. Every mode has a corresponding code number, and as we shall see, there is a very simple way to figure out what number corresponds to any mode.
-
-
-Every single digit in the triplet corresponds to the level of authorization for a group (user, group and others). Every digit is the addition of the rights for this group, and every level of permission corresponds to a number:
-
-* 4 for r.
-* 2 for w.
-* 1 for x.
-
-So if a file has rwxr-xr-x permissions we do the following calculation:
-
-* Triplet for u: rwx => 4 + 2 + 1 = *7*
-* Triplet for g: r-x => 4 + 0 + 1 = *5*
-* Triplet for o: r-x => 4 + 0 + 1 = *5*
-Which makes : 755
-
-So, 755 in UNIX permissions means 'I don't mind if other people read or run this file, but only I should be able to modify it' while 777 means 'everyone has full access to this file'
-
-
 ## Customize The terminal - Demo
 
 #### When using bash_profile
@@ -513,62 +394,12 @@ Git stores information about your project in a **repository**. A git repository 
 | Show version history | `git log <filename>` |
 | Get help with git commands | `git help <command>` |
 
-### Homework Submission with GitHub
-
-1. Create a fork of the homework repository by clicking "Fork" on the top right. Homework repositories will always live in the `sf-wdi-24` GitHub organization.
-
-  ![screen-shot-2015-10-20-at-17 26 49](https://cloud.githubusercontent.com/assets/7833470/10625501/b15a2bee-7758-11e5-8b12-2c84b785801b.png)
-
-2. You'll see a screen like this while GitHub is forking the repo. Forking creates a copy of the original repo on your own GitHub account.
-
-  ![screen-shot-2015-10-20-at-17 21 15-1](https://cloud.githubusercontent.com/assets/7833470/10625502/b422f2e8-7758-11e5-8cf1-09ae4fd7d946.png)
-
-3. Now you have your own copy of the repo! Copy the "clone URL" from the bottom right.
-
-  ![screen-shot-2015-10-20-at-17 22 43](https://cloud.githubusercontent.com/assets/7833470/10625504/b7243f42-7758-11e5-870c-56fdbb5ddd14.png)
-
-4. Use the "clone URL" to clone the repo onto your local machine. Make sure you're in your `~/develop` directory before you clone!
-
-  ```zsh
-  ➜  cd ~/develop
-  ➜  git clone <clone-url>
-  ```
-
-5. Change directories into the repo you just cloned (in this example, `command-line-mystery`).
-
-  ```zsh
-  ➜  cd command-line-mystery
-  ```
-
-6. At this point, begin writing code to complete the assignment. Make sure you're committing frequently and pushing to GitHub. A typical workflow looks something like this:
-
-  ```zsh
-  # make changes using your text editor
-  ➜  git status
-  ➜  git add .
-  ➜  git commit -m "message describing changes"
-  ➜  git push origin master
-  ```
-
-7. Once you're done with the assignment and have committed and pushed ALL of your changes to GitHub, it's time to make a pull request back to the original homework repo. Go to your forked copy of the repo on GitHub, and click the "Pull Request" button.
-
-  ![screen-shot-2015-10-20-at-17 25 24](https://cloud.githubusercontent.com/assets/7833470/10625506/ba15d4cc-7758-11e5-8302-a9c412567cc0.png)
-
-8. GitHub takes you to a new view and asks if you want to create the pull request. Click the green button, and that's it - you've now created a pull request to submit your homework!
-
-  ![screen-shot-2015-10-20-at-17 25 49](https://cloud.githubusercontent.com/assets/7833470/10625507/bc97d38a-7758-11e5-8fe9-e4846e06e454.png)
-
 ## Resources
 
 * <a href="https://github.com/0nn0/terminal-mac-cheatsheet/wiki/Terminal-Cheatsheet-for-Mac-(-basics-)" target="_blank">Terminal Cheatsheet for Mac</a>
 * <a href="https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf" target="_blank">Git Cheat Sheet</a>
 
 
-
 ## Closing Thoughts
 
 We will use the command line several hours every day, because is makes all files and folders manipulations more easy. A lot of software programs that we will use during the course also only have a CLI interface and can only be used with commands. Always remember that every action you'll do in a GUI can be done in the CLI.
-
-
-## Meta Skills
-Click [here](https://github.com/sf-wdi-29/resources/blob/master/meta-skills.md) to go to the meta-skills page. 
